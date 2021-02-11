@@ -47,10 +47,8 @@ namespace net5_webapi.Controllers
         {
             string username = body.Username.ToLower();
 
-            // HASH
             string hash = await db.Value<string>("SELECT hash FROM User WHERE LOWER(username)=@username", new { username });
 
-            // LOGIN
             if (!string.IsNullOrEmpty(hash) && crypto.HashCheck(hash, body.Password))
             {
                 JObject session = await LoadSession(username);
