@@ -79,7 +79,7 @@ namespace net5_webapi
             // SWAGGER
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "net5-webapi", Version = "v1", Description = ".NET 5.0 Docker-ready REST API example using JWT authentication, Swagger, Newtonsoft JSON, and Dapper with SQL Server." });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "net5-webapi", Version = "v1", Description = ".NET 5.0 Docker-ready C# REST API example using JWT authentication, Swagger, Newtonsoft JSON, and Dapper with SQL Server." });
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
