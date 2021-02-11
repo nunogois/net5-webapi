@@ -41,8 +41,8 @@ namespace net5_webapi
             // JWT
             dynamic JwtConfig = new
             {
-                Issuer = "net5-webapi", // USE YOUR OWN ISSUER!
-                Key = "IXB5CL374JWB1Q0MAY63OOUD2JVTPJ" // USE YOUR OWN KEY!
+                Issuer = Configuration.GetSection("JWT:Issuer").Value, // USE YOUR OWN ISSUER!
+                Key = Configuration.GetSection("JWT:Key").Value // USE YOUR OWN KEY!
             };
 
             // Remove default claims

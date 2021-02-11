@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using net5_webapi.Engines;
 using Newtonsoft.Json.Linq;
@@ -17,11 +18,13 @@ namespace net5_webapi.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly IConfiguration config;
         private readonly IDBEngine db;
         private readonly ICryptoEngine crypto;
 
-        public AuthController(IDBEngine DBEngine, ICryptoEngine CryptoEngine)
+        public AuthController(IConfiguration Configuration, IDBEngine DBEngine, ICryptoEngine CryptoEngine)
         {
+            config = Configuration;
             db = DBEngine;
             crypto = CryptoEngine;
         }
@@ -109,7 +112,7 @@ namespace net5_webapi.Controllers
             return await db.Json("SELECT id, username, email FROM User WHERE LOWER(username)=@username", new { username = username.ToLower() });
         }
 
-        private static string GenerateJwtToken(JObject session)
+        private string GenerateJwtToken(JObject session)
         {
             var claims = new List<Claim>
             {
@@ -120,9 +123,9 @@ namespace net5_webapi.Controllers
 
             dynamic JwtConfig = new
             {
-                Issuer = "net-core-webapi", // USE YOUR OWN ISSUER!
-                Key = "IXB5CL374JWB1Q0MAY63OOUD2JVTPJ", // USE YOUR OWN KEY!
-                ExpireMinutes = 600 // Expiration minutes, evaluate accordingly - It might make sense to automatically refresh the JWT in prod
+                Issuer = config.GetSection("JWT:Issuer").Value,
+                Key = config.GetSection("JWT:Key").Value,
+                ExpireMinutes = config.GetSection("JWT:ExpireMinutes").Value
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtConfig.Key));
