@@ -67,8 +67,12 @@ I suggest exploring **Dockerfile** and **launchSettings.json** for more informat
 
 ### DBEngine
 
-Use DBEngine as a template to your own database interface. In my case: Dapper and SQL Server. Check IDBEngine for more information on the methods.
+Use DBEngine as a template to your own database interface. In my case: Dapper and SQL Server. 
+
+Check IDBEngine for more information on the methods.
 
 ### CryptoEngine
 
-Use CryptoEngine to execute cryptography methods. This is basically a wrapper for [CryptoHelper](https://github.com/henkmollema/CryptoHelper). Check ICryptoEngine for more information on the methods.
+Use CryptoEngine to execute cryptography methods. This is basically a wrapper for [CryptoHelper](https://github.com/henkmollema/CryptoHelper). 
+
+Check ICryptoEngine for more information on the methods.
