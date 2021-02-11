@@ -21,7 +21,9 @@ This assumes the methods are working properly, so you'll need to setup your own 
 
 ### Swagger - Authorization
 
-After logging in on `POST /api/Auth/Login` you will receive a token ([JWT](https://jwt.io/)) along with session info. You can use that token to authenticate in Swagger, e.g. clicking on **Authorize** on the top right corner and entering `Bearer *your_token*` in the dialog. If the token is valid, you should be able to request authenticated routes.
+After logging in with `POST /api/Auth/Login` you will receive a token ([JWT](https://jwt.io/)) along with session info. 
+
+You can use that token to authenticate in Swagger. Simply click on **Authorize** on the top right corner and enter `Bearer *your_token*` in the dialog. If the token is valid, you should be able to request authenticated routes like the ones in **Notes**.
 
 ## DBConnection (Dapper -> SQL Server)
 
@@ -29,7 +31,7 @@ I'm using **DBEngine** as an example interface for your preferred database. Feel
 
 The connection string is currently being fetched from **ConnectionStrings.DBConnection** in **appsettings.json**.
 
-The [SQL Server](https://www.microsoft.com/sql-server/sql-server-2019?rtc=1) queries I'm using are obviously just an example, adapt to your own database schema and needs.
+The [SQL Server](https://www.microsoft.com/sql-server/sql-server-2019?rtc=1) queries I'm using are just examples, adapt to your own database schema and needs.
 
 ## JWT Authentication
 
@@ -37,11 +39,11 @@ JWT configuration is currently being fetched from **JWT** in **appsettings.json*
 
  - **Issuer** - Add your JWT issuer;
  - **Key** - Add your JWT key;
- - **ExpireMinutes** - Add your JWT expiration minutes, evaluate accordingly - It might make sense to automatically refresh the JWT in prod;
+ - **ExpireMinutes** - Add your JWT expiration minutes - evaluate accordingly, it might make sense to automatically refresh the JWT in prod;
 
 ## Docker
 
-Since this is a [.NET 5.0](https://docs.microsoft.com/en-us/dotnet/core/dotnet-five) project, it is cross-platform and this means being Docker-ready. You obviously don't need to run this project in Docker but the option is there. If you're using Visual Studio, you can easily switch between debug profiles on the debug dropdown.
+Since this is a [.NET 5.0](https://docs.microsoft.com/en-us/dotnet/core/dotnet-five) project, it is cross-platform and this means it can also be easily containerized in Docker. Obviously, this doesn't mean you need to run this project in Docker, however the option is available. If you're using Visual Studio, you can easily switch between debug profiles on the debug dropdown.
 
 I suggest exploring **Dockerfile** and **launchSettings.json** for more information.
 
@@ -65,8 +67,12 @@ I suggest exploring **Dockerfile** and **launchSettings.json** for more informat
 
 ### DBEngine
 
-Use DBEngine as a template to your own database interface. In my case: Dapper and SQL Server. Check IDBEngine for more information on the methods.
+Use DBEngine as a template to your own database interface. In my case: Dapper and SQL Server. 
+
+Check IDBEngine for more information on the methods.
 
 ### CryptoEngine
 
-Use CryptoEngine to execute cryptography methods. This is basically a wrapper for [CryptoHelper](https://github.com/henkmollema/CryptoHelper). Check ICryptoEngine for more information on the methods.
+Use CryptoEngine to execute cryptography methods. This is basically a wrapper for [CryptoHelper](https://github.com/henkmollema/CryptoHelper). 
+
+Check ICryptoEngine for more information on the methods.
